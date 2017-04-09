@@ -62,7 +62,7 @@ Find your fraternity bro
                      "type": "FOOD_ITEMS (Custom Slot Name)"
                  }
             ]
-        }.
+        },
         {
             "intent": "GetNextEventIntent",
             "slots": [
