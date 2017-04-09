@@ -1,12 +1,12 @@
-GetNutritionInfo how many calories are in {FoodItem}
-GetNutritionInfo {FoodItem}
-GetNutritionInfo {FoodItem} calories
-GetNutritionInfo {FoodItem} nutrition information
-GetNutritionInfo get calorie information of {FoodItem}
-GetNutritionInfo get nutrition information of {FoodItem}
-GetNutritionInfo get me calorie information of {FoodItem}
-GetNutritionInfo give me calorie information of {FoodItem}
-GetNutritionInfo tell me calorie information of {FoodItem}
+GetBroInfo how many calories are in {BroItem}
+GetBroInfo {BroItem}
+GetBroInfo {BroItem} calories
+GetBroInfo {BroItem} nutrition information
+GetBroInfo get calorie information of {BroItem}
+GetBroInfo get nutrition information of {BroItem}
+GetBroInfo get me calorie information of {BroItem}
+GetBroInfo give me calorie information of {BroItem}
+GetBroInfo tell me calorie information of {BroItem}
 
 GetNextEventIntent more information
 GetNextEventIntent more

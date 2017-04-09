@@ -198,7 +198,73 @@ function onLaunch(launchRequest, session, response) {
   response.done();
 }
 
+var MAX_RESPONSES = 5;
+var MAX_FOOD_ITEMS = 10;
+
 intentHandlers['GetBroInfo'] = function (request, session, response, slots) {
-// Intent l
+// Intent logic
+// slots.BroItem
+var brodb = require('./bro_db.json');
+var results  = searchBro (brodb,slots.BroItem);
+
+
+
+}
+
+function searchBro (bDb, broName) {
+  broName = broName.toLowerCase();
+  broName = broName.replace(/,/g, '');
+  var broWords = broName.split(/\s+/);
+  var regExps = []
+  var searchResult = []
+
+  broWords.forEach(function(sWord) {
+  regExps.push(new RegExp(`^${sWord}(es|s)?\\b`));
+  regExps.push(new RegExp(`^${sWord}`));
+  });
+
+  bDb.forEach( function (item) {
+    var match = 1;
+    var fullName = item[0]
+    var cmpWeight = 0;
+
+  broWords.forEach(function(sWord) {
+      if(!fullName.match(sWord)) {
+        match = 0;
+      }
+    });
+
+  if(match==0) {
+      return;
+    }
+
+  regExps.forEach(function(rExp) {
+      if(fullName.match(rExp)) {
+        cmpWeight += 10;
+      }
+    });
+
+  if (fullName.split(/\s+/).length == broWords.length) {
+        cmpWeight += 10;
+    }
+  searchResult.push([item, cmpWeight]);
+
+  });
+
+  var finalResult = searchResult.filter(function(x){return x[1]>=10});
+  if(finalResult.length == 0) {
+    finalResult = searchResult;
+  } else {
+    finalResult.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+  }
+
+  finalResult = finalResult.map(function(x) {
+    return x[0]
+  });
+
+  return finalResult;  
+  
 }
  
