@@ -192,17 +192,13 @@ function onSessionEnded(sessionEndedRequest, session) {
 
 function onLaunch(launchRequest, session, response) {
   logger.debug('onLaunch requestId=' + launchRequest.requestId + ', sessionId=' + session.sessionId);
-  response.speechText = 'Welcome msg';
-  response.repromptText = 'Reprompt msg';
+  response.speechText = 'Yo yo waddup bro, i can help you find your bro, tell me who looking for?';
+  response.repromptText = 'For Example, you can say tell me bros from a specific university';
   response.shouldEndSession = false;
   response.done();
 }
 
-
-/** For each intent write a intentHandlers
-Example:
-intentHandlers['HelloIntent'] = function(request,session,response,slots) {
-  //Intent logic
-  
+intentHandlers['GetBroInfo'] = function (request, session, response, slots) {
+// Intent l
 }
-**/
+ 
