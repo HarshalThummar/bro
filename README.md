@@ -53,7 +53,7 @@ Find your fraternity bro
 
 ```JSON
 {
-    "intents"" [ 
+    "intents" [ 
         {
             "intent": "GetNutritionInfo",
             "slots": [
