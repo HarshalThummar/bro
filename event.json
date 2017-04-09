@@ -15,11 +15,11 @@
     "intent": {
       "slots": {
         "FoodItem": {
-          "name": "FoodItem",
-          "value": "butter salted" // Slot name 
+          "name": "BroItem",
+          "value": "Sagar Patel" // Slot name 
         }
       },
-      "name": "GetNutritionInfo"
+      "name": "GetBroInfo"
     },
     "type": "IntentRequest",
     "requestId": "request5678"

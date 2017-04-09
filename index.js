@@ -199,16 +199,151 @@ function onLaunch(launchRequest, session, response) {
 }
 
 var MAX_RESPONSES = 5;
-var MAX_FOOD_ITEMS = 10;
+var MAX_BRO_ITEMS = 10;
 
-intentHandlers['GetBroInfo'] = function (request, session, response, slots) {
-// Intent logic
-// slots.BroItem
-var brodb = require('./bro_db.json');
-var results  = searchBro (brodb,slots.BroItem);
+// intentHandlers['GetBroInfo'] = function (request, session, response, slots) {
+// // Intent logic
+// // slots.BroItem
+// var brodb = require('./bro_db.json');
+// var results  = searchBro (brodb,slots.BroItem);
+// }
+
+intentHandlers['GetBroInfo'] = function(request,session,response,slots) {
+  //Intent logic
+  //slots.FoodItem
+
+  if(slots.BroItem === undefined) {
+    response.speechText = 'Looks like you forgot to mention bro name. Which bro information you would like to know? ';
+    response.repromptText = 'For example, you can say, first and last name ';
+    response.shouldEndSession = false;
+    response.done();
+    return;
+  }
+
+  var broDb = require('./bro_db.json');
+  var results = searchFood(broDb,slots.BroItem);
+
+  response.cardTitle = `Bro Lookup results for: ${slots.BroItem}`;
+  response.cardContent = '';
+  
+  if(results.length==0) {
+    response.speechText = `Could not find bro  for ${slots.BroItem}. Please try different bro name. `;
+    response.cardContent += response.speechText;
+    response.shouldEndSession = true;
+    response.done();
+  } else {
+
+    results.slice(0,MAX_RESPONSES).forEach( function(item) {
+      response.speechText  += `The University for ${item[0]} is ${item[1]}  `; 
+      response.cardContent += `The University for ${item[0]} is ${item[1]}  `; 
+    });
+
+
+    if(results.length > MAX_RESPONSES) {
+      response.speechText += `There are more bros matched your search. You can say more information for more information. Or say stop to stop the skill. `; 
+      response.cardContent += `There are more bros matched your search. You can say more information for more information. Or say stop to stop the skill. `; 
+      response.repromptText = `You can say more information or stop.`; 
+      session.attributes.resultLength = results.length;
+      session.attributes.BroItem = slots.BroItem;
+      session.attributes.results = results.slice(MAX_RESPONSES,MAX_BRO_ITEMS);
+      response.shouldEndSession = false;
+      response.done();
+
+    } else {
+      response.shouldEndSession = true;
+      response.done();
+    }
+
+
+  }
+
+
+}
 
 
 
+intentHandlers['AMAZON.StopIntent'] = function(request,session,response,slots) {
+  response.speechText  = `Good Bye. `;
+  response.shouldEndSession = true;
+  response.done();
+};
+
+
+
+
+intentHandlers['GetNextEventIntent'] = function(request,session,response,slots) {
+
+  if(session.attributes.results) {
+    response.cardTitle = `Nutrition Lookup more information for: ${session.attributes.FoodItem}`;
+
+    response.speechText  = `Your search resulted in ${session.attributes.resultLength} food items. Here are the few food items from search. Please add more keywords from this list for better results.`;
+    response.cardContent = `${response.speechText}\n`;
+
+
+    session.attributes.results.forEach(function(item) {
+      response.speechText += `${item[0]}. `; 
+      response.cardContent += `'${item[0]}'\n`;
+    });
+  } else {
+    response.speechText  = `Wrong invocation of this intent. `;
+  }
+  response.shouldEndSession = true;
+  response.done();
+
+};
+
+
+
+intentHandlers['AMAZON.CancelIntent'] =  intentHandlers['AMAZON.StopIntent'];
+
+intentHandlers['AMAZON.HelpIntent'] = function(request,session,response,slots) {
+  response.speechText = "You can ask Nutrition Lookup skill about calorie information of food items. For a given food item, it provides you Calories per 100 grams. For example, you can say butter salted, to know about its Calories per 100 grams. Alternatively, you can also say how many calories in butter salted. If skill not opened you can also say in one shot, Alexa, ask Nutri Lookup about butter salted. Please refer to skill description for all possible sample utterences. Which food calorie information would you like to know?";
+  response.repromptText = "Which food calorie information would you like to know? or You can say stop to stop the skill.";
+  response.shouldEndSession = false;
+  response.done();
+}
+
+
+
+intentHandlers['GetQuizIntent'] = function(request,session,response,slots) {
+  var fruitsDb = require('./fruits_db.json');
+  var index = Math.floor(Math.random() * fruitsDb.length);
+  response.speechText  = `How many calories in ${fruitsDb[index][0]}. `;
+  response.repromptText  = `Please tell number of calories. `;
+  session.attributes.fruit = fruitsDb[index];
+  response.shouldEndSession = false;
+  response.done();
+}
+
+
+
+
+
+intentHandlers['QuizAnswerIntent'] = function(request,session,response,slots) {
+  var fruitInfo = session.attributes.fruit;
+  var answer = Number(slots.Answer)
+  var calories = Number(fruitInfo[1])
+
+  if (calories === answer) {
+    response.speechText  = `Correct answer. Congrats. `;
+  } else if( Math.abs(calories - answer) < 5 )  {
+    response.speechText  = `You are pretty close. ${fruitInfo[0]} contains ${fruitInfo[1]} calories. `;
+  } else {
+    response.speechText  = `Wrong answer. ${fruitInfo[0]} contains ${fruitInfo[1]} calories. `;
+  }
+  response.shouldEndSession = true;
+  response.done();
+}
+
+
+
+intentHandlers['DontKnowIntent'] = function(request,session,response,slots) {
+  var fruitInfo = session.attributes.fruit;
+  var calories = Number(fruitInfo[1])
+
+  response.speechText  = `No problem. ${fruitInfo[0]} contains ${fruitInfo[1]} calories. `;
+  response.shouldEndSession = true;
+  response.done();
 }
 
 function searchBro (bDb, broName) {
