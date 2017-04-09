@@ -1,16 +1,11 @@
-GetBroInfo how many calories are in {BroItem}
+GetBroInfo bro name is {BroItem}
 GetBroInfo {BroItem}
-GetBroInfo {BroItem} calories
-GetBroInfo {BroItem} nutrition information
-GetBroInfo get calorie information of {BroItem}
-GetBroInfo get nutrition information of {BroItem}
-GetBroInfo get me calorie information of {BroItem}
-GetBroInfo give me calorie information of {BroItem}
-GetBroInfo tell me calorie information of {BroItem}
+GetBroInfo His name is {BroItem} 
+GetBroInfo name {BroItem} 
+GetBroInfo Firsname and last name is  {BroItem}
 
 GetNextEventIntent more information
 GetNextEventIntent more
-
 
 
 GetQuizIntent start a quiz

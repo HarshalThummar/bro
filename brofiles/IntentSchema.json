@@ -1,11 +1,11 @@
 {
   "intents": [
     {
-      "intent": "GetNutritionInfo",
+      "intent": "GetBroInfo",
       "slots": [
         {
-          "name": "FoodItem",
-          "type": "FOOD_ITEMS"
+          "name": "BroItem",
+          "type": "BRO_ITEMS"
         }
       ]
     },
