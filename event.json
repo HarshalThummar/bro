@@ -7,7 +7,7 @@
       "userId": "usrid123"
     },
     "application": {
-      "applicationId": "amzn1.echo-sdk-ams.app.1234"
+      "applicationId": "amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990"
     }
   },
   "version": "1.0",
@@ -16,7 +16,7 @@
       "slots": {
         "FoodItem": {
           "name": "BroItem",
-          "value": "Sagar Patel" // Slot name 
+          "value": "Sagar Patel"
         }
       },
       "name": "GetBroInfo"

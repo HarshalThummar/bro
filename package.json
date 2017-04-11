@@ -11,5 +11,8 @@
     "url": "."
   },
   "author": "Ronak",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "winston": "^2.3.1"
+  }
 }

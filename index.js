@@ -176,7 +176,7 @@ function getError(err) {
 //--------------------------------------------- Skill specific logic starts here ----------------------------------------- 
 
 //Add your skill application ID from amazon devloper portal
-var APP_ID = '';
+var APP_ID = 'amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990';
 
 function onSessionStarted(sessionStartedRequest, session) {
     logger.debug('onSessionStarted requestId=' + sessionStartedRequest.requestId + ', sessionId=' + session.sessionId);
@@ -201,12 +201,6 @@ function onLaunch(launchRequest, session, response) {
 var MAX_RESPONSES = 5;
 var MAX_BRO_ITEMS = 10;
 
-// intentHandlers['GetBroInfo'] = function (request, session, response, slots) {
-// // Intent logic
-// // slots.BroItem
-// var brodb = require('./bro_db.json');
-// var results  = searchBro (brodb,slots.BroItem);
-// }
 
 intentHandlers['GetBroInfo'] = function(request,session,response,slots) {
   //Intent logic
@@ -263,7 +257,7 @@ intentHandlers['GetBroInfo'] = function(request,session,response,slots) {
 
 
 intentHandlers['AMAZON.StopIntent'] = function(request,session,response,slots) {
-  response.speechText  = `Good Bye. `;
+  response.speechText  = `Peace out`;
   response.shouldEndSession = true;
   response.done();
 };
