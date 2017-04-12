@@ -59,7 +59,7 @@ var event = {
       userId: 'usrid123'
     },
     application: {
-      applicationId: 'amzn1.ask.skill.f5cf61da-007e-4d6f-8db4-9325c0735787'
+      applicationId: 'amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990'
     }
   },
   version: '1.0',
@@ -114,27 +114,15 @@ describe('All intents', function() {
   });
 
   var expResults = {
-    'butter salted': {
+    'sagar patel': {
       endSession: true,
       searchResults: 1
-    },
-    'orange': {
-      endSession: false,
-      searchResults: 18
-    },
-    'apples raw': {
-      endSession: false,
-      searchResults: 11
-    },
-    'toy': {
-      endSession: true,
-      searchResults: 0
     }
   };
 
   for(var key in expResults) {
 
-    describe(`Test GetNutritionInfo ${key}`, function() {
+    describe(`Test GetBroInfo ${key}`, function() {
         var options = expResults[key];
         var testFood = key;
 
@@ -143,11 +131,11 @@ describe('All intents', function() {
           event.request.intent = {};
           event.session.attributes = {};
           event.request.type = 'IntentRequest';
-          event.request.intent.name = 'GetNutritionInfo';
+          event.request.intent.name = 'GetBroInfo';
           event.request.intent.slots = {
-            FoodItem: {
-              name: 'FoodItem',
-              value: testFood
+            BroItem: {
+              name: 'BroItem',
+              value: 'sagar patel'
             }
           };
           ctx.done = done;
@@ -252,13 +240,13 @@ describe('All intents', function() {
     }
   }
 
-  describe(`Test GetNutritionInfo empty slot`, function() {
+  describe(`Test Bro empty slot`, function() {
 
       before(function(done) {
         event.request.intent = {};
         event.session.attributes = {};
         event.request.type = 'IntentRequest';
-        event.request.intent.name = 'GetNutritionInfo';
+        event.request.intent.name = 'GetBroInfo';
         event.request.intent.slots = {};
         ctx.done = done;
         lambdaToTest.handler(event , ctx);

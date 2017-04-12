@@ -1,4 +1,4 @@
-// This is template files for developing Alexa skills
+// This skill to find a bro from the database 
 
 'use strict';
 
@@ -178,7 +178,7 @@ function getError(err) {
 //--------------------------------------------- Skill specific logic starts here ----------------------------------------- 
 
 //Add your skill application ID from amazon devloper portal
-var APP_ID = ' amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990';
+var APP_ID = 'amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990';
 
 function onSessionStarted(sessionStartedRequest, session) {
     logger.debug('onSessionStarted requestId=' + sessionStartedRequest.requestId + ', sessionId=' + session.sessionId);

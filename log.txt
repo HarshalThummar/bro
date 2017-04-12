@@ -1,0 +1,197 @@
+
+
+  All intents
+    Test LaunchIntent
+2017-04-12T01:25:06.957Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      ✓ valid response
+      1) valid outputSpeech
+      2) valid outputSpeech
+    Test GetBroInfo butter salted
+2017-04-12T01:25:06.970Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      3) valid response
+      4) valid card
+      5) valid outputSpeech
+    Test GetBroInfo orange
+2017-04-12T01:25:06.973Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      ✓ valid response
+      6) valid card
+      7) valid outputSpeech
+      8) valid reprompt
+    Test GetNextEventIntent orange
+2017-04-12T01:25:06.975Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      ✓ valid response
+      9) valid card
+      10) valid outputSpeech
+    Test AMAZON.StopIntent orange
+2017-04-12T01:25:06.977Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      ✓ valid response
+      ✓ valid outputSpeech
+    Test GetBroInfo apples raw
+2017-04-12T01:25:06.978Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      ✓ valid response
+      11) valid card
+      12) valid outputSpeech
+      13) valid reprompt
+    Test GetNextEventIntent apples raw
+2017-04-12T01:25:06.981Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      ✓ valid response
+      14) valid card
+      15) valid outputSpeech
+    Test AMAZON.StopIntent apples raw
+2017-04-12T01:25:06.984Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      ✓ valid response
+      ✓ valid outputSpeech
+    Test GetBroInfo toy
+2017-04-12T01:25:06.985Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      16) valid response
+      17) valid card
+      18) valid outputSpeech
+    Test GetNutritionInfo empty slot
+2017-04-12T01:25:06.986Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      19) valid response
+      20) valid outputSpeech
+      21) valid reprompt
+    Test GetQuizIntent
+2017-04-12T01:25:06.987Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      22) valid response
+      23) valid outputSpeech
+      24) valid reprompt
+    Test QuizAnswerIntent correct answer
+      25) "before all" hook
+    Test QuizAnswerIntent close answer
+      26) "before all" hook
+    Test QuizAnswerIntent wrong answer
+      27) "before all" hook
+    Test DontKnowIntent
+2017-04-12T01:25:06.990Z - info: event.session.application.applicationId=amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990
+      ✓ valid response
+      28) valid outputSpeech
+
+
+  10 passing (49ms)
+  28 failing
+
+  1) All intents Test LaunchIntent valid outputSpeech:
+     AssertionError: expected '<speak>Yo yo waddup bro, i can help you find your bro, who are you looking for?, tell me the firstname and last name</speak>' to match /<speak>Hi,.*<\/speak>/
+      at Context.<anonymous> (test.js:107:65)
+
+  2) All intents Test LaunchIntent valid outputSpeech:
+     AssertionError: expected '<speak>For Example, you can say tell me first and last name of the bro</speak>' to match /<speak>For example.*<\/speak>/
+      at Context.<anonymous> (test.js:111:74)
+
+  3) All intents Test GetBroInfo butter salted valid response:
+     AssertionError: expected false to be true
+      at validRsp (test.js:33:66)
+      at Context.<anonymous> (test.js:158:10)
+
+  4) All intents Test GetBroInfo butter salted valid card:
+     AssertionError: expected undefined not to be undefined
+      at validCard (test.js:45:56)
+      at Context.<anonymous> (test.js:162:10)
+
+  5) All intents Test GetBroInfo butter salted valid outputSpeech:
+     TypeError: Cannot read property 'length' of null
+      at Context.<anonymous> (test.js:169:87)
+
+  6) All intents Test GetBroInfo orange valid card:
+     AssertionError: expected undefined not to be undefined
+      at validCard (test.js:45:56)
+      at Context.<anonymous> (test.js:162:10)
+
+  7) All intents Test GetBroInfo orange valid outputSpeech:
+     TypeError: Cannot read property 'length' of null
+      at Context.<anonymous> (test.js:169:87)
+
+  8) All intents Test GetBroInfo orange valid reprompt:
+     AssertionError: expected '<speak>For example, you can say, first and last name </speak>' to match /You can say/
+      at Context.<anonymous> (test.js:180:76)
+
+  9) All intents Test GetNextEventIntent orange valid card:
+     AssertionError: expected undefined not to be undefined
+      at validCard (test.js:45:56)
+      at Context.<anonymous> (test.js:207:12)
+
+  10) All intents Test GetNextEventIntent orange valid outputSpeech:
+     AssertionError: expected '<speak>Wrong invocation of this intent. </speak>' to match /Your search resulted in 18 food items/
+      at Context.<anonymous> (test.js:212:69)
+
+  11) All intents Test GetBroInfo apples raw valid card:
+     AssertionError: expected undefined not to be undefined
+      at validCard (test.js:45:56)
+      at Context.<anonymous> (test.js:162:10)
+
+  12) All intents Test GetBroInfo apples raw valid outputSpeech:
+     TypeError: Cannot read property 'length' of null
+      at Context.<anonymous> (test.js:169:87)
+
+  13) All intents Test GetBroInfo apples raw valid reprompt:
+     AssertionError: expected '<speak>For example, you can say, first and last name </speak>' to match /You can say/
+      at Context.<anonymous> (test.js:180:76)
+
+  14) All intents Test GetNextEventIntent apples raw valid card:
+     AssertionError: expected undefined not to be undefined
+      at validCard (test.js:45:56)
+      at Context.<anonymous> (test.js:207:12)
+
+  15) All intents Test GetNextEventIntent apples raw valid outputSpeech:
+     AssertionError: expected '<speak>Wrong invocation of this intent. </speak>' to match /Your search resulted in 11 food items/
+      at Context.<anonymous> (test.js:212:69)
+
+  16) All intents Test GetBroInfo toy valid response:
+     AssertionError: expected false to be true
+      at validRsp (test.js:33:66)
+      at Context.<anonymous> (test.js:158:10)
+
+  17) All intents Test GetBroInfo toy valid card:
+     AssertionError: expected undefined not to be undefined
+      at validCard (test.js:45:56)
+      at Context.<anonymous> (test.js:162:10)
+
+  18) All intents Test GetBroInfo toy valid outputSpeech:
+     AssertionError: expected '<speak>Looks like you forgot to mention bro name. Which bro information you would like to know? </speak>' to match /Could not find any food item/
+      at Context.<anonymous> (test.js:167:69)
+
+  19) All intents Test GetNutritionInfo empty slot valid response:
+     AssertionError: expected true to be false
+      at validRsp (test.js:36:66)
+      at Context.<anonymous> (test.js:268:8)
+
+  20) All intents Test GetNutritionInfo empty slot valid outputSpeech:
+     AssertionError: expected '<speak>Unknown intent</speak>' to match /Looks like/
+      at Context.<anonymous> (test.js:273:67)
+
+  21) All intents Test GetNutritionInfo empty slot valid reprompt:
+     TypeError: Cannot read property 'outputSpeech' of undefined
+      at Context.<anonymous> (test.js:277:51)
+
+  22) All intents Test GetQuizIntent valid response:
+     AssertionError: expected true to be false
+      at validRsp (test.js:36:66)
+      at Context.<anonymous> (test.js:296:8)
+
+  23) All intents Test GetQuizIntent valid outputSpeech:
+     AssertionError: expected '<speak>Unknown intent</speak>' to match /How many/
+      at Context.<anonymous> (test.js:300:65)
+
+  24) All intents Test GetQuizIntent valid reprompt:
+     TypeError: Cannot read property 'outputSpeech' of undefined
+      at Context.<anonymous> (test.js:304:51)
+
+  25) All intents Test QuizAnswerIntent correct answer "before all" hook:
+     TypeError: Cannot read property 'fruit' of undefined
+      at Context.<anonymous> (test.js:311:38)
+
+  26) All intents Test QuizAnswerIntent close answer "before all" hook:
+     TypeError: Cannot read property 'fruit' of undefined
+      at Context.<anonymous> (test.js:338:38)
+
+  27) All intents Test QuizAnswerIntent wrong answer "before all" hook:
+     TypeError: Cannot read property 'fruit' of undefined
+      at Context.<anonymous> (test.js:369:38)
+
+  28) All intents Test DontKnowIntent valid outputSpeech:
+     AssertionError: expected '<speak>Unknown intent</speak>' to match /Peace out/
+      at Context.<anonymous> (test.js:411:65)
+
+
+
