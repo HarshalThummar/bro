@@ -60,7 +60,9 @@ exports.handler = function (event, context) {
 function getSlots(req) {
   var slots = {}
   for(var key in req.intent.slots) {
-    slots[key] = req.intent.slots[key].value;
+    if(req.intent.slots[key].value !== undefined) {
+      slots[key] = req.intent.slots[key].value;
+    }  
   }
   return slots;
 }
@@ -176,7 +178,7 @@ function getError(err) {
 //--------------------------------------------- Skill specific logic starts here ----------------------------------------- 
 
 //Add your skill application ID from amazon devloper portal
-var APP_ID = 'amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990';
+var APP_ID = ' amzn1.ask.skill.ce1dd0fc-a286-4711-8943-68ef6d98b990';
 
 function onSessionStarted(sessionStartedRequest, session) {
     logger.debug('onSessionStarted requestId=' + sessionStartedRequest.requestId + ', sessionId=' + session.sessionId);
@@ -215,7 +217,7 @@ intentHandlers['GetBroInfo'] = function(request,session,response,slots) {
   }
 
   var broDb = require('./bro_db.json');
-  var results = searchFood(broDb,slots.BroItem);
+  var results = searchBro(broDb,slots.BroItem);
 
   response.cardTitle = `Bro Lookup results for: ${slots.BroItem}`;
   response.cardContent = '';
@@ -255,20 +257,10 @@ intentHandlers['GetBroInfo'] = function(request,session,response,slots) {
 }
 
 
-
-intentHandlers['AMAZON.StopIntent'] = function(request,session,response,slots) {
-  response.speechText  = `Peace out`;
-  response.shouldEndSession = true;
-  response.done();
-};
-
-
-
-
 intentHandlers['GetNextEventIntent'] = function(request,session,response,slots) {
 
   if(session.attributes.results) {
-    response.cardTitle = `Nutrition Lookup more information for: ${session.attributes.FoodItem}`;
+    response.cardTitle = `Nutrition Lookup more information for: ${session.attributes.BroItem}`;
 
     response.speechText  = `Your search resulted in ${session.attributes.resultLength} food items. Here are the few food items from search. Please add more keywords from this list for better results.`;
     response.cardContent = `${response.speechText}\n`;
@@ -286,6 +278,12 @@ intentHandlers['GetNextEventIntent'] = function(request,session,response,slots) 
 
 };
 
+intentHandlers['AMAZON.StopIntent'] = function(request,session,response,slots) {
+  response.speechText  = `Peace out`;
+  response.shouldEndSession = true;
+  response.done();
+};
+
 
 
 intentHandlers['AMAZON.CancelIntent'] =  intentHandlers['AMAZON.StopIntent'];
@@ -299,46 +297,46 @@ intentHandlers['AMAZON.HelpIntent'] = function(request,session,response,slots) {
 
 
 
-intentHandlers['GetQuizIntent'] = function(request,session,response,slots) {
-  var fruitsDb = require('./fruits_db.json');
-  var index = Math.floor(Math.random() * fruitsDb.length);
-  response.speechText  = `How many calories in ${fruitsDb[index][0]}. `;
-  response.repromptText  = `Please tell number of calories. `;
-  session.attributes.fruit = fruitsDb[index];
-  response.shouldEndSession = false;
-  response.done();
-}
+// intentHandlers['GetQuizIntent'] = function(request,session,response,slots) {
+//   var fruitsDb = require('./bro_db.json');
+//   var index = Math.floor(Math.random() * fruitsDb.length);
+//   response.speechText  = `How many calories in ${fruitsDb[index][0]}. `;
+//   response.repromptText  = `Please tell number of calories. `;
+//   session.attributes.fruit = fruitsDb[index];
+//   response.shouldEndSession = false;
+//   response.done();
+// }
 
 
 
 
 
-intentHandlers['QuizAnswerIntent'] = function(request,session,response,slots) {
-  var fruitInfo = session.attributes.fruit;
-  var answer = Number(slots.Answer)
-  var calories = Number(fruitInfo[1])
+// intentHandlers['QuizAnswerIntent'] = function(request,session,response,slots) {
+//   var fruitInfo = session.attributes.fruit;
+//   var answer = Number(slots.Answer)
+//   var calories = Number(fruitInfo[1])
 
-  if (calories === answer) {
-    response.speechText  = `Correct answer. Congrats. `;
-  } else if( Math.abs(calories - answer) < 5 )  {
-    response.speechText  = `You are pretty close. ${fruitInfo[0]} contains ${fruitInfo[1]} calories. `;
-  } else {
-    response.speechText  = `Wrong answer. ${fruitInfo[0]} contains ${fruitInfo[1]} calories. `;
-  }
-  response.shouldEndSession = true;
-  response.done();
-}
+//   if (calories === answer) {
+//     response.speechText  = `Correct answer. Congrats. `;
+//   } else if( Math.abs(calories - answer) < 5 )  {
+//     response.speechText  = `You are pretty close. ${fruitInfo[0]} contains ${fruitInfo[1]} calories. `;
+//   } else {
+//     response.speechText  = `Wrong answer. ${fruitInfo[0]} contains ${fruitInfo[1]} calories. `;
+//   }
+//   response.shouldEndSession = true;
+//   response.done();
+// }
 
 
 
-intentHandlers['DontKnowIntent'] = function(request,session,response,slots) {
-  var fruitInfo = session.attributes.fruit;
-  var calories = Number(fruitInfo[1])
+// intentHandlers['DontKnowIntent'] = function(request,session,response,slots) {
+//   var fruitInfo = session.attributes.fruit;
+//   var calories = Number(fruitInfo[1])
 
-  response.speechText  = `No problem. ${fruitInfo[0]} contains ${fruitInfo[1]} calories. `;
-  response.shouldEndSession = true;
-  response.done();
-}
+//   response.speechText  = `No problem. ${broInfo[0]} contains ${fruitInfo[1]} calories. `;
+//   response.shouldEndSession = true;
+//   response.done();
+// }
 
 function searchBro (bDb, broName) {
   broName = broName.toLowerCase();
