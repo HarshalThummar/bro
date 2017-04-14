@@ -5,7 +5,7 @@
       "slots": [
         {
           "name": "BroItem",
-          "type": "BRO_ITEMS"
+          "type": "BRO_ITEM"
         }
       ]
     },

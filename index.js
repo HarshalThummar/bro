@@ -222,7 +222,7 @@ intentHandlers['GetBroInfo'] = function(request,session,response,slots) {
   response.cardTitle = `Bro Lookup results for: ${slots.BroItem}`;
   response.cardContent = '';
   
-  if(results.length==0) {
+  if(results.length === 0) {
     response.speechText = `Could not find bro  for ${slots.BroItem}. Please try different bro name. `;
     response.cardContent += response.speechText;
     response.shouldEndSession = true;

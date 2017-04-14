@@ -104,7 +104,7 @@ describe('All intents', function() {
      });
 
      it('valid outputSpeech', function() {
-       expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/<speak>Hi,.*<\/speak>/);
+       expect(ctx.speechResponse.response.outputSpeech.ssml).to.match('/<speak>Yo yo waddup bro, i can help you find your bro, who are you looking for?, tell me the firstname and last name</speak>/');
      });
     
      it('valid outputSpeech', function() {
@@ -116,7 +116,7 @@ describe('All intents', function() {
   var expResults = {
     'sagar patel': {
       endSession: true,
-      searchResults: 1
+      // searchResults: 1
     }
   };
 
