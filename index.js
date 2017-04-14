@@ -194,7 +194,7 @@ function onSessionEnded(sessionEndedRequest, session) {
 
 function onLaunch(launchRequest, session, response) {
   logger.debug('onLaunch requestId=' + launchRequest.requestId + ', sessionId=' + session.sessionId);
-  response.speechText = 'Yo yo waddup bro, i can help you find your bro, who are you looking for?, tell me the firstname and last name';
+  response.speechText = 'Yo yo waddup bro, i can help you find your bro, who are you looking for?, tell me the first and last name';
   response.repromptText = 'For Example, you can say tell me first and last name of the bro';
   response.shouldEndSession = false;
   response.done();
